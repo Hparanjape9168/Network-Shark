@@ -1,0 +1,102 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>MinFrame.java</title>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<style type="text/css">
+<!--
+body {color: #000000; background-color: #ffffff; font-family: Monospaced}
+pre {color: #000000; background-color: #ffffff; font-family: Monospaced}
+table {color: #000000; background-color: #f8f8f8; font-family: Monospaced}
+.comment {color: #969696}
+.character {color: #ce7b00}
+.keyword-directive {color: #0000e6}
+.line-number {background-color: #f8f8f8}
+-->
+</style>
+</head>
+<body>
+<pre>
+The following short code fragment shows you the way how to switch the Look and
+Feel in your application. Be sure that the JTattooDemo.jar is in the java classpath
+if you want to run this demo. The easiest way is to copy the JTattooDemo.jar into
+the (java_home)/jre/lib/ext folder.
+
+<span class="line-number"> 1</span> <span class="comment">/*</span>
+<span class="line-number"> 2</span> <span class="comment"> * Copyright 2005 MH-Software-Entwicklung. All rights reserved.</span>
+<span class="line-number"> 3</span> <span class="comment"> * Use is subject to license terms.</span>
+<span class="line-number"> 4</span> <span class="comment"> */</span>
+<span class="line-number"> 5</span>
+<span class="line-number"> 6</span> <span class="keyword-directive">package</span> com.jtattoo.demo.app;
+<span class="line-number"> 7</span>
+<span class="line-number"> 8</span> <span class="keyword-directive">import</span> java.awt.*;
+<span class="line-number"> 9</span> <span class="keyword-directive">import</span> java.awt.event.*;
+<span class="line-number">10</span> <span class="keyword-directive">import</span> javax.swing.*;
+<span class="line-number">11</span>
+<span class="line-number">12</span> <span class="keyword-directive">public</span> <span class="keyword-directive">class</span> MinFrame <span class="keyword-directive">extends</span> JFrame {
+<span class="line-number">13</span>
+<span class="line-number">14</span>     <span class="keyword-directive">public</span> MinFrame() {
+<span class="line-number">15</span>         <span class="keyword-directive">super</span>(<span class="character">&quot;</span><span class="character">Minimal-Frame-Application</span><span class="character">&quot;</span>);
+<span class="line-number">16</span>
+<span class="line-number">17</span>         <span class="comment">// setup menu</span>
+<span class="line-number">18</span>         JMenuBar menuBar = <span class="keyword-directive">new</span> JMenuBar();
+<span class="line-number">19</span>         JMenu menu = <span class="keyword-directive">new</span> JMenu(<span class="character">&quot;</span><span class="character">File</span><span class="character">&quot;</span>);
+<span class="line-number">20</span>         menu.setMnemonic(<span class="character">&#39;F&#39;</span>);
+<span class="line-number">21</span>         JMenuItem menuItem = <span class="keyword-directive">new</span> JMenuItem(<span class="character">&quot;</span><span class="character">Exit</span><span class="character">&quot;</span>);
+<span class="line-number">22</span>         menuItem.setMnemonic(<span class="character">&#39;x&#39;</span>);
+<span class="line-number">23</span>         menuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_F4, KeyEvent.ALT_MASK));
+<span class="line-number">24</span>         menuItem.addActionListener(<span class="keyword-directive">new</span> ActionListener() {
+<span class="line-number">25</span>             <span class="keyword-directive">public</span> <span class="keyword-directive">void</span> actionPerformed(ActionEvent event) {
+<span class="line-number">26</span>                 System.exit(0);
+<span class="line-number">27</span>             }
+<span class="line-number">28</span>         });
+<span class="line-number">29</span>         menu.add(menuItem);
+<span class="line-number">30</span>
+<span class="line-number">31</span>         menu.add(menuItem);
+<span class="line-number">32</span>         menuBar.add(menu);
+<span class="line-number">33</span>         setJMenuBar(menuBar);
+<span class="line-number">34</span>
+<span class="line-number">35</span>         <span class="comment">// setup widgets</span>
+<span class="line-number">36</span>         JPanel contentPanel = <span class="keyword-directive">new</span> JPanel(<span class="keyword-directive">new</span> BorderLayout());
+<span class="line-number">37</span>         contentPanel.setBorder(BorderFactory.createEmptyBorder(0, 4, 4, 4));
+<span class="line-number">38</span>         JScrollPane westPanel = <span class="keyword-directive">new</span> JScrollPane(<span class="keyword-directive">new</span> JTree());
+<span class="line-number">39</span>         JEditorPane editor = <span class="keyword-directive">new</span> JEditorPane(<span class="character">&quot;</span><span class="character">text/plain</span><span class="character">&quot;</span>, <span class="character">&quot;</span><span class="character">Hello </span><span class="character">World</span><span class="character">&quot;</span>);
+<span class="line-number">40</span>         JScrollPane eastPanel = <span class="keyword-directive">new</span> JScrollPane(editor);
+<span class="line-number">41</span>         JSplitPane splitPane = <span class="keyword-directive">new</span> JSplitPane(JSplitPane.HORIZONTAL_SPLIT, <span class="keyword-directive">true</span>, westPanel,eastPanel);
+<span class="line-number">42</span>         splitPane.setDividerLocation(148);
+<span class="line-number">43</span>         contentPanel.add(splitPane, BorderLayout.CENTER);
+<span class="line-number">44</span>         setContentPane(contentPanel);
+<span class="line-number">45</span>
+<span class="line-number">46</span>         <span class="comment">// add listeners</span>
+<span class="line-number">47</span>         addWindowListener(<span class="keyword-directive">new</span> WindowAdapter() {
+<span class="line-number">48</span>             <span class="keyword-directive">public</span> <span class="keyword-directive">void</span> windowClosing(WindowEvent e) {
+<span class="line-number">49</span>                 System.exit(0);
+<span class="line-number">50</span>             }
+<span class="line-number">51</span>         });
+<span class="line-number">52</span>
+<span class="line-number">53</span>         <span class="comment">// show application</span>
+<span class="line-number">54</span>         setLocation(32, 32);
+<span class="line-number">55</span>         setSize(400, 300);
+<span class="line-number">56</span>         setVisible(<span class="keyword-directive">true</span>);
+<span class="line-number">57</span>
+<span class="line-number">58</span>     } <span class="comment">// end CTor MinFrame</span>
+<span class="line-number">59</span>
+<span class="line-number">60</span>     <span class="keyword-directive">public</span> <span class="keyword-directive">static</span> <span class="keyword-directive">void</span> main(String[] args) {
+<span class="line-number">61</span>         <span class="keyword-directive">try</span> {
+<span class="line-number">62</span>             <span class="comment">// select Look and Feel</span>
+<span class="line-number">63</span>             UIManager.setLookAndFeel(<span class="character">&quot;</span><span class="character">com.jtattoo.plaf.smart.SmartLookAndFeel</span><span class="character">&quot;</span>);
+<span class="line-number">64</span>             <span class="comment">// start application</span>
+<span class="line-number">65</span>             <span class="keyword-directive">ne</span><span class="keyword-directive">w</span> MinFrame();
+<span class="line-number">66</span>         }
+<span class="line-number">67</span>         <span class="keyword-directive">catch</span> (Exception ex) {
+<span class="line-number">68</span>             ex.printStackTrace();
+<span class="line-number">69</span>         }
+<span class="line-number">70</span>     } <span class="comment">// end main</span>
+<span class="line-number">71</span>
+<span class="line-number">72</span> } <span class="comment">// end class MinFr</span><span class="comment">ame</span>
+<span class="line-number">73</span>
+<span class="line-number">74</span>
+</pre></body>
+</html>
+
+
